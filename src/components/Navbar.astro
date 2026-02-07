@@ -3,6 +3,7 @@ import {Image} from 'astro:assets';
 import logoImage from '../assets/panhey_gmbh_logo.png';
 import {NAV_LINKS} from '../consts';
 import {getCollection} from 'astro:content';
+import { url } from '../utils';
 
 const allServices = await getCollection('services');
 
@@ -35,7 +36,7 @@ const menuItems = NAV_LINKS.map(link => {
     <div class="container mx-auto px-4 h-20 flex items-center justify-between">
 
         <!-- LOGO -->
-        <a href="/" class="flex items-center gap-3 group z-50 relative">
+        <a href={url("/")} class="flex items-center gap-3 group z-50 relative">
             <Image
                     src={logoImage}
                     alt="Panhey Logo"
@@ -56,7 +57,7 @@ const menuItems = NAV_LINKS.map(link => {
                                 @mouseleave="open = false"
                         >
                             <a
-                                    href={item.href}
+                                    href={url(item.href)}
                                     class="flex items-center gap-1 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors uppercase tracking-wide cursor-pointer"
                             >
                                 {item.name}
@@ -80,7 +81,7 @@ const menuItems = NAV_LINKS.map(link => {
                                     <div class="p-2 space-y-1">
                                         {item.subItems.map(sub => (
                                                 <a
-                                                        href={`/${sub.data.category}/${sub.slug}`}
+                                                        href={url(`/${sub.data.category}/${sub.slug}`)}
                                                         class="block px-4 py-3 rounded-lg hover:bg-blue-50 transition-colors group/item"
                                                 >
                                                     <p class="text-sm font-bold text-slate-800 group-hover/item:text-blue-600">
@@ -93,7 +94,7 @@ const menuItems = NAV_LINKS.map(link => {
                                         ))}
                                     </div>
                                     <div class="bg-slate-50 px-4 py-3 border-t border-slate-100 text-center">
-                                        <a href={item.href}
+                                        <a href={url(item.href)}
                                            class="text-xs font-bold text-blue-600 hover:text-blue-700 uppercase tracking-wider">
                                             Alles anzeigen &rarr;
                                         </a>
@@ -103,7 +104,7 @@ const menuItems = NAV_LINKS.map(link => {
                         </div>
                 ) : (
                         <a
-                                href={item.href}
+                                href={url(item.href)}
                                 class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors uppercase tracking-wide"
                         >
                             {item.name}
@@ -173,7 +174,7 @@ const menuItems = NAV_LINKS.map(link => {
                                             {item.subItems.map(sub => (
                                                     <li>
                                                         <a
-                                                                href={`/${sub.data.category}/${sub.slug}`}
+                                                                href={url(`/${sub.data.category}/${sub.slug}`)}
                                                                 class="block py-2 text-slate-600 hover:text-blue-600"
                                                                 @click="mobileMenuOpen = false"
                                                                 data-astro-prefetch="hover"
@@ -184,7 +185,7 @@ const menuItems = NAV_LINKS.map(link => {
                                             ))}
                                             <li class="pt-2 border-t border-slate-200 mt-2 pb-2">
                                                 <a
-                                                        href={item.href}
+                                                        href={url(item.href)}
                                                         class="text-sm font-bold text-blue-600 uppercase tracking-wide"
                                                         @click="mobileMenuOpen = false"
                                                         data-astro-prefetch="hover"
@@ -197,7 +198,7 @@ const menuItems = NAV_LINKS.map(link => {
                                 </>
                         ) : (
                                 <a
-                                        href={item.href}
+                                        href={url(item.href)}
                                         class="block py-4 text-lg font-bold text-slate-800"
                                         @click="mobileMenuOpen = false"
                                         data-astro-prefetch="hover"

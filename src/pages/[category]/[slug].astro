@@ -1,9 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import { url } from '../../utils';
 import { Image } from 'astro:assets';
 
-// 1. Alle möglichen Kombinationen aus Category + Slug generieren
 export async function getStaticPaths() {
     const services = await getCollection('services');
     return services.map(entry => ({
@@ -12,7 +12,6 @@ export async function getStaticPaths() {
     }));
 }
 
-// 2. Den Eintrag aus den Props holen
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 const date = new Date(entry.data.date).toLocaleDateString('de-DE', {
@@ -24,13 +23,12 @@ const date = new Date(entry.data.date).toLocaleDateString('de-DE', {
 
 <Layout title={entry.data.title}>
     <section class="py-20 container mx-auto px-4 max-w-3xl">
-        <a href={`/${entry.data.category}`} class="text-sm text-blue-500 hover:underline mb-4 block">&larr; Zurück zur Übersicht</a>
+        <a href={url(`/${entry.data.category}`)} class="text-sm text-blue-500 hover:underline mb-4 block">&larr; Zurück zur Übersicht</a>
 
         <h1 class="text-4xl font-bold mb-3">{entry.data.title}</h1>
         <h2 class="text-1xl font-semibold mb-1">{entry.data.description}</h2>
         <h3 class="text-sm text-slate-500 mb-4">{date}</h3>
 
-        <!-- Hier wird das Markdown gerendert -->
         <div class="prose prose-slate prose-lg prose-img:rounded-xl prose-img:shadow-lg">
             <Content />
         </div>

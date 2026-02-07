@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import logoImage from '../assets/panhey_gmbh_logo.png';
 import { NAV_LINKS } from '../consts';
+import { url } from '../utils';
 
 const currentYear = new Date().getFullYear();
 ---
@@ -12,7 +13,7 @@ const currentYear = new Date().getFullYear();
 
             <!-- Spalte 1: Info -->
             <div class="space-y-6">
-                <a href="/" class="block">
+                <a href={url("/")} class="block">
                     <Image
                             src={logoImage}
                             alt="Panhey Logo"
@@ -51,7 +52,7 @@ const currentYear = new Date().getFullYear();
                 <ul class="space-y-3 text-sm">
                     {NAV_LINKS.filter(l => l.href !== '/#kontakt').map(link => (
                             <li>
-                                <a href={link.href} class="hover:text-blue-500 transition-colors">
+                                <a href={url(link.href)} class="hover:text-blue-500 transition-colors">
                                     {link.name}
                                 </a>
                             </li>
@@ -63,8 +64,8 @@ const currentYear = new Date().getFullYear();
             <div>
                 <h3 class="text-white font-bold text-lg mb-3">Rechtliches</h3>
                 <ul class="space-y-3 text-sm">
-                    <li><a href="/impressum" class="hover:text-blue-500 transition-colors">Impressum</a></li>
-                    <li><a href="/datenschutz" class="hover:text-blue-500 transition-colors">Datenschutz</a></li>
+                    <li><a href={url("/impressum")} class="hover:text-blue-500 transition-colors">Impressum</a></li>
+                    <li><a href={url("/datenschutz")} class="hover:text-blue-500 transition-colors">Datenschutz</a></li>
                 </ul>
             </div>
         </div>
