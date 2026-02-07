@@ -1,0 +1,78 @@
+---
+import { Image } from 'astro:assets';
+import heroImage from '../assets/hero_placeholder.jpeg';
+---
+
+<section id="ueber-uns" class="py-24 bg-white overflow-hidden">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col lg:flex-row items-center gap-16">
+
+            <div class="lg:w-1/2 relative">
+                <div class="absolute -top-4 -left-4 w-24 h-24 bg-blue-100 rounded-full -z-10"></div>
+                <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-slate-100 rounded-full -z-10"></div>
+
+                <Image
+                        src={heroImage}
+                        alt="Das Team der Herbert Panhey GmbH"
+                        width={600}
+                        height={450}
+                        class="rounded-2xl shadow-xl w-full object-cover h-[400px] lg:h-[700px]"
+                />
+
+                <div class="absolute bottom-8 left-0 lg:-left-8 bg-white p-6 rounded-xl shadow-xl border border-slate-50 max-w-xs animate-fade-in-up">
+                    <p class="text-4xl font-bold text-blue-500 mb-1">1967</p>
+                    <p class="text-slate-600 font-medium text-sm leading-tight">
+                        Gegründet in Krefeld.<br>Seit über 55 Jahren für Sie da.
+                    </p>
+                </div>
+            </div>
+
+            <div class="lg:w-1/2">
+                <span class="text-blue-500 font-bold uppercase tracking-wider text-sm mb-2 block">Über Uns</span>
+                <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 mb-6 leading-tight">
+                    Qualität aus Tradition.<br>
+                    <span class="text-slate-500">Innovation aus Leidenschaft.</span>
+                </h2>
+
+                <div class="prose prose-lg text-slate-600 mb-8">
+                    <p class="mb-4">
+                        Als die Herbert Panhey GmbH im Jahr <strong>1967</strong> gegründet wurde, war die Welt der Haustechnik noch eine völlig andere. Doch eines hat sich seit diesem Tag nicht geändert: Unser Anspruch an echte <strong>Krefelder Handschlagqualität</strong>.
+                    </p>
+
+                    <p class="mb-4">
+                        Als Familienbetrieb in zweiter Generation verbinden wir heute die Werte traditionellen Handwerks mit den Möglichkeiten modernster Energietechnik. Wir sind stolz darauf, nicht einfach nur Installateure zu sein, sondern Ihre persönlichen Berater für ein komfortables Zuhause.
+                    </p>
+
+                    <p class="mb-4">
+                        Ob es um die hocheffiziente <strong>Brennwerttechnik</strong>, den Traum vom <strong>barrierefreien Bad</strong> oder komplexe <strong>Flüssiggasanlagen</strong> geht – wir verkaufen Ihnen keine Produkte von der Stange. Wir entwickeln Lösungen, die exakt zu Ihrem Haus, Ihrem Budget und Ihrem Leben passen.
+                    </p>
+
+                    <p>
+                        Verlassen Sie sich auf uns: <strong>Pünktlich. Sauber. Ehrlich.</strong>
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        </div>
+                        <span class="font-semibold text-slate-800">Meisterbetrieb</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <span class="font-semibold text-slate-800">WHG Fachbetrieb</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                        </div>
+                        <span class="font-semibold text-slate-800">Innungsmitglied</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

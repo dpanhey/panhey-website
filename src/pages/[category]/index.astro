@@ -1,0 +1,75 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+
+// 1. Astro sagen, welche URLs existieren sollen (Static Site Generation)
+export async function getStaticPaths() {
+	const categories = ['heizung', 'sanitaer', 'gastechnik'];
+	return categories.map(cat => ({ params: { category: cat } }));
+
+}
+
+// 2. Parameter aus URL holen
+const { category } = Astro.params;
+const categoryTitles: Record<string, string> = {
+	heizung: 'Heizung & Wärme',
+	sanitaer: 'Sanitär & Bäder',
+	gastechnik: 'Gastechnik',
+};
+
+const services = (await getCollection('services', ({ data }) => {
+	return data.category === category;
+})).sort((a, b) => {
+	if (a.data.order && !b.data.order) return -1;
+	if (!a.data.order && b.data.order) return 1;
+	if (a.data.order && b.data.order) {
+		if (a.data.order !== b.data.order) {
+			return a.data.order - b.data.order;
+		}
+	}
+
+	return b.data.date.valueOf() - a.data.date.valueOf();
+});
+
+const title = categoryTitles[category] || (category.charAt(0).toUpperCase() + category.slice(1));
+---
+
+<Layout title={title}>
+	<section class="py-10 container mx-auto px-4">
+		<h1 class="text-4xl font-bold mb-8 border-b pb-4">{title}</h1>
+
+		{services.length === 0 ? (
+			<p>Keine Einträge gefunden.</p>
+		) : (
+			<div class="grid lg:grid-cols-2 gap-6">
+				{services.map(service => (
+					<a href={`/${category}/${service.slug}`} class="block group">
+						<article class="bg-white rounded-xl shadow-sm border overflow-hidden hover:shadow-md transition-all h-full flex flex-col">
+
+							{service.data.cover && (
+								<div class="h-48 overflow-hidden bg-slate-100">
+									<Image
+										src={service.data.cover}
+										alt={service.data.title}
+										width={600}
+										height={400}
+										class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+									/>
+								</div>
+							)}
+
+							<div class="p-6 flex-grow">
+								<h2 class="text-xl font-bold mb-2 group-hover:text-blue-500">{service.data.title}</h2>
+								<p class="text-slate-600 line-clamp-3">{service.data.description}</p>
+							</div>
+							<div class="px-6 pb-6 mt-auto">
+								<span class="text-blue-500 text-sm font-bold inline-block">Mehr erfahren →</span>
+							</div>
+						</article>
+					</a>
+				))}
+			</div>
+		)}
+	</section>
+</Layout>
