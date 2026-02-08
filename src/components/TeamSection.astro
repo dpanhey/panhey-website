@@ -1,0 +1,95 @@
+---
+import {Image} from 'astro:assets';
+// Importiere hier später deine echten Bilder aus src/assets/team/
+// import chefImg from '../assets/team/chef.jpg';
+
+const team = [
+    {
+        name: "Heribert Panhey",
+        role: "Geschäftsführer & Meister",
+        qualifications: ["Zentralheizungs- & Lüftungsbaumeister", "Gas- & Wasserinstallateurmeister"],
+        bio: "Seit über 40 Jahren im Handwerk. Seine Erfahrung ist das Fundament der Firma.",
+        // image: chefImg, // Später einkommentieren
+        placeholder: "https://ui-avatars.com/api/?name=Heribert+Panhey&background=f97316&color=fff&size=512"
+    },
+    {
+        name: "Volker Marquis-Panhey",
+        role: "Gas- und Wasserinstallateur",
+        qualifications: ["Spezialist für Flüssiggasanlagen", "Kundendienst-Techniker"],
+        bio: "Löst jedes Problem an Ihrer Flüssiggasanlage. Wenn er geht, wird es knallen.",
+        placeholder: "https://ui-avatars.com/api/?name=Volker+Marquis+Panhey&background=0f172a&color=fff&size=512"
+    },
+    {
+        name: "Dominic Panhey",
+        role: "Anlagenmechaniker SHK",
+        qualifications: ["Experte für Heizungsanlagen", "Kundendienst-Techniker"],
+        bio: "Unser Mann fürs Heizen. Wenn er geht, wird es kalt.",
+        placeholder: "https://ui-avatars.com/api/?name=Dominic+Panhey&background=0f172a&color=fff&size=512"
+    },
+    {
+        name: "Fynn Simanzick",
+        role: "Auszubildender (1. Lehrjahr)",
+        qualifications: ["Angehender Anlagenmechaniker", "Technik-Begeistert"],
+        bio: "Die Zukunft des Handwerks. Wenn er geht, wird es lustig.",
+        placeholder: "https://ui-avatars.com/api/?name=Fynn+Simanzick&background=94a3b8&color=fff&size=512"
+    }
+];
+---
+
+<section class="py-24 bg-slate-50">
+    <div class="container mx-auto px-4">
+
+        <!-- Section Header -->
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <span class="text-orange-500 font-bold uppercase tracking-wider text-sm mb-2 block">Unser Team</span>
+            <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
+                Gesichter hinter der Technik
+            </h2>
+            <p class="text-slate-600 text-lg">
+                Wir sind kein anonymer Konzern, sondern ein eingespieltes Familien-Team aus Krefeld.
+                Bei uns arbeiten Meister, Gesellen und Azubis Hand in Hand.
+            </p>
+        </div>
+
+        <!-- Team Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {team.map((member) => (
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all hover:scale-105 transition-transform duration-300 group border border-slate-100 flex flex-col">
+
+                        <div class="h-64 overflow-hidden relative bg-slate-200">
+                            <!--
+                                Hier nutzen wir ein normales <img> für den Platzhalter.
+                                Später mit <Image src={member.image} ... /> ersetzen!
+                            -->
+                            <img
+                                    src={member.placeholder}
+                                    alt={member.name}
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                            />
+
+                            <!-- Overlay Gradient (macht Text lesbarer falls er im Bild stünde) -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/10 to-transparent"></div>
+                        </div>
+
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-xl font-bold text-slate-900 mb-1">{member.name}</h3>
+                            <p class="text-orange-600 font-medium text-sm mb-4">{member.role}</p>
+
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                {member.qualifications.map(q => (
+                                        <span class="inline-block bg-slate-100 text-slate-600 text-xs px-2 py-1 rounded-md font-medium">
+                  {q}
+                </span>
+                                ))}
+                            </div>
+
+                            <p class="text-slate-500 text-sm leading-relaxed mt-auto border-t border-slate-100 pt-4">
+                                {member.bio}
+                            </p>
+                        </div>
+
+                    </div>
+            ))}
+        </div>
+    </div>
+</section>
